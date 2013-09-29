@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name='apple-mobile-web-app-capable' content='yes' />
+  <title>Simple Simulator</title>
+
+  <script src="less.js"></script>
+  <script src="traceur.js"></script>
+  <script src="bootstrap.js"></script>
+
+  <script language="javascript" type="text/javascript">
+    window.requestAnimFrame = (function (callback) {
+
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              window.oRequestAnimationFrame      ||
+              window.msRequestAnimationFrame     ||
+              function (callback) {
+                setTimeout(callback, 1000 / 60);
+              };
+    })();
+  </script>
+
+  <link rel="stylesheet/less" href="main.less" type="text/css"/>
+
+  <script type="text/traceur" src="utils.js"></script>
+  <script type="text/traceur" src="base.js"></script>
+  <script type="text/traceur" src="world.js"></script>
+  <script type="text/traceur" src="item.js"></script>
+  <script type="text/traceur" src="system.js"></script>
+  <script type="text/traceur" src="init.js"></script>
+</head>
+<body>
+</body>
+</html>
