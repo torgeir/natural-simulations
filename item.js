@@ -3,6 +3,7 @@
 class Item extends Base {
 
   constructor (options) {
+    super(options);
     this.id = options.id;
 
     this.el = document.createElement('div');
@@ -12,9 +13,9 @@ class Item extends Base {
 
   init (options) {
     this.location   = options.location;
-    this.width      = options.width || 20;
+    this.width      = options.width  || 20;
     this.height     = options.height || 20;
-    this.color      = options.color || [0, 0, 0];
+    this.color      = options.color  || [0, 0, 0];
     this.visibility = options.visibility || 'visible';
   }
 

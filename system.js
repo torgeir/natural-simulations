@@ -8,6 +8,7 @@ var itemId = idCreator(0);
 class System {
 
   constructor (options) {
+    this.features = options.features;
     this.name = options.name;
     this.setup = options.setup;
     this.records = [];
@@ -22,7 +23,8 @@ class System {
 
   add (Item) {
     var options = {
-      id: itemId()
+      id: itemId(),
+      features: this.features
     };
 
     var item = new Item(options);

@@ -2,6 +2,7 @@
 class World extends Base {
 
   constructor (el) {
+    super({});
     this.el = el;
     this.el.classList.add('world');
 
