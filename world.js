@@ -1,3 +1,4 @@
+var viewport = Utils.viewportSize();
 
 class World extends Base {
 
@@ -6,15 +7,15 @@ class World extends Base {
     this.el = el;
     this.el.classList.add('world');
 
-    var viewport = Utils.viewportSize();
     this.width  = viewport.width;
     this.height = viewport.height;
-    this.location = {
-      x: viewport.width / 2,
-      y: viewport.height / 2
-    };
     this.color = 'transparent';
     this.visibility = 'visible';
+
+    this.location = new Vector(viewport.width / 2, viewport.height / 2);
+    this.gravity  = new Vector(0, 0.1);
+    this.wind     = new Vector(0.05, 0);
+    this.thermal  = new Vector(0, -0.025);
   }
 
   step () {}

@@ -34,10 +34,7 @@ class System {
     this.lookup[item.id] = item.el.parentNode;
 
     var initOptions = {
-      location: {
-        x: this.world.width  / 2,
-        y: this.world.height / 2
-      }
+      location: { x: this.world.width / 2, y: this.world.height / 2 }
     };
 
     item.init(initOptions);
@@ -47,12 +44,18 @@ class System {
     var i,
         len = this.records.length - 1;
 
+    var options = {
+      gravity: this.world.gravity,
+      thermal: this.world.thermal,
+      wind:    this.world.wind
+    };
+
     for (i = len; i >= 0; i--) {
-      this.records[i].step();
+      this.records[i].step(options);
     }
 
     for (i = len; i >= 0; i--) {
-      this.records[i].draw();
+      this.records[i].draw(options);
     }
 
     requestAnimFrame(this.update.bind(this));
