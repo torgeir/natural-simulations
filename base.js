@@ -29,7 +29,7 @@ class Base {
       throw new Error(this + " has no .el to change the css of");
     }
 
-    this.el.style.cssText = this.cssText({
+    var options = {
       x: this.location.x - (this.width  / 2),
       y: this.location.y - (this.height / 2),
       width:  this.width,
@@ -37,17 +37,20 @@ class Base {
       color0: this.color[0],
       color1: this.color[1],
       color2: this.color[2],
-      visibility: this.visibility
-    });
+      visibility: this.visibility,
+      zindex: this.id
+    };
+
+    this.el.style.cssText = this.cssText(options);
   }
 
   cssText (options) {
-    var css = '' +
+    return '' +
       this.styleTemplate.replace(/<x>/g, options.x).replace(/<y>/g, options.y) +
       'width: ' + options.width + 'px;' +
       'height: ' + options.height + 'px;' +
       'background-color: rgb(' + options.color0 + ', ' + options.color1 + ', ' + options.color2 + ');' +
-      'visibility: ' + options.visibility + ';';
-    return css;
+      'visibility: ' + options.visibility + ';'+
+      'z-index: ' + options.zindex + ';';
   }
 }

@@ -27,4 +27,11 @@ module Utils {
 
     return d;
   }
+
+  export function merge (what, props) {
+    for (var key in props) {
+      what[key] = props[key];
+    }
+    return what;
+  }
 }

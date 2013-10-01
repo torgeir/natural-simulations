@@ -9,10 +9,10 @@ class System {
 
   constructor (options) {
     this.features = options.features;
-    this.name = options.name;
-    this.setup = options.setup;
-    this.records = [];
-    this.lookup = {};
+    this.name     = options.name;
+    this.setup    = options.setup;
+    this.records  = [];
+    this.lookup   = {};
 
     this.world = new World(options.world);
     this.records.push(this.world);
@@ -21,23 +21,19 @@ class System {
     this.update();
   }
 
-  add (Item) {
-    var options = {
-      id: itemId(),
-      features: this.features
-    };
+  add (Item, options) {
+    options = Utils.merge({
+        id: itemId(),
+        features: this.features,
+        x: this.world.width / 2,
+        y: this.world.height / 2
+      }, options);
 
     var item = new Item(options);
     this.world.el.appendChild(item.el);
 
     this.records.push(item);
     this.lookup[item.id] = item.el.parentNode;
-
-    var initOptions = {
-      location: { x: this.world.width / 2, y: this.world.height / 2 }
-    };
-
-    item.init(initOptions);
   }
 
   update () {
@@ -55,7 +51,11 @@ class System {
     }
 
     for (i = len; i >= 0; i--) {
-      this.records[i].draw(options);
+      this.records[i].draw();
+    }
+
+    for (i = len; i >= 0; i--) {
+      this.records[i].constrainWithinEdges(this.world.width, this.world.height);
     }
 
     requestAnimFrame(this.update.bind(this));
